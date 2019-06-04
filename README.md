@@ -2,7 +2,7 @@
 a grafana table panel, interval scroll data.
 
 # Screenshots
-![Screenshots](https://github.com/gtlions/grafana-scroll-table-panel/tree/master/src/img "Screenshots")
+![Screenshots](https://github.com/gtlions/grafana-scroll-table-panel/blob/master/src/img/scrolltable.gif "Screenshots")
 ![Option](https://github.com/gtlions/grafana-scroll-table-panel/blob/master/src/img/option.png "Option")
 
 # Development
