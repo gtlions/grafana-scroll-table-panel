@@ -1,0 +1,52 @@
+{
+    "type": "panel",
+    "name": "Scroll Table",
+    "id": "grafana-scroll-table-panel",
+    "dataFormats": [
+        "table"
+    ],
+    "info": {
+        "description": "scroll table panel for grafana",
+        "author": {
+            "name": "Gtlions Lai",
+            "url": "gtlions.l@qq.com"
+        },
+        "keywords": [
+            "scroll",
+            "table",
+            "grafana",
+            "plugin",
+            "panel"
+        ],
+        "logos": {
+            "small": "img/icn-table-panel.svg",
+            "large": "img/icn-table-panel.svg"
+        },
+        "links": [
+            {
+                "name": "Project site",
+                "url": "https://github.com/gtlions/grafana-scroll-table-panel.git"
+            },
+            {
+                "name": "MIT License",
+                "url": "https://github.com/gtlions/grafana-scroll-table-panel/blob/master/LICENSE"
+            }
+        ],
+        "screenshots": [
+            {
+                "name": "Show",
+                "path": "img/scrolltable.img"
+            },
+            {
+                "name": "Options",
+                "path": "img/screenshot-scrolltable-options.png"
+            }
+        ],
+        "version": "1.0.0",
+        "updated": "2019-05-31"
+    },
+    "dependencies": {
+        "grafanaVersion": "6.x.x",
+        "plugins": []
+    }
+}

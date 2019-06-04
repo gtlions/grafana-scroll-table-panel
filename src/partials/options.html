@@ -1,0 +1,19 @@
+<div class="editor-row">
+    <div class="section gf-form-group">
+        <h5 class="section-heading">选项</h5>
+        <div class="gf-form">
+            <label class="gf-form-label width-9">滚动间隔(毫秒)</label>
+            <div class="gf-form-select-wrapper max-width-12">
+                <select class="input-small gf-form-input" ng-model="ctrl.panel.scrollrefresh" ng-options="t for t in ctrl.intervals" ng-change="ctrl.render()"></select>
+            </div>
+        </div>
+
+        <!-- <div class="gf-form">
+            <label class="gf-form-label width-9">滚动方向</label>
+            <div class="gf-form-select-wrapper max-width-12">
+                <select class="input-small gf-form-input" ng-model="ctrl.panel.scrolldirection" ng-options="a.id as a.name for a in ctrl.direction" ng-change="ctrl.render()">
+                </select>
+            </div>
+        </div> -->
+    </div>
+</div>

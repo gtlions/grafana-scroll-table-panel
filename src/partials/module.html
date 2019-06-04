@@ -1,0 +1,18 @@
+<!-- <div class="clock-panel" ng-style="{height: ctrl.height}"> -->
+<!-- <h5> 表格内容逐行滚动 demo</h5> -->
+<div class="admin-list-table">
+    <table class="filter-table form-inline filter-table--hover" ng-model="ctrl.scrollrefresh2">
+        <thead>
+            <tr>
+                <th ng-repeat="c in ctrl.columns">{{ c.text }}</th>
+            </tr>
+        </thead>
+        <tbody id="tbd" ng-model="ctrl.tbd" class="scrollTbody">
+            <tr ng-repeat="r in ctrl.records" id="first">
+                <td ng-repeat="i in ctrl.serial">
+                    {{ r[i] }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
