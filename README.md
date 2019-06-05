@@ -16,10 +16,10 @@ Option
 
 Clone the repository and cd to it
 
-make sure you have yarn installed
+make sure you have ```yarn``` installed
 
-install project dependencies: yarn install --pure-lockfile
+install project dependencies: ```yarn install --pure-lockfile```
 
-Start the "watch" task: yarn watch
+Start the "watch" task: ```yarn watch```
 
-To build a production build with minification: yarn build
+To build a production build with minification: ```yarn build```
