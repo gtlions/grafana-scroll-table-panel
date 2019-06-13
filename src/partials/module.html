@@ -7,8 +7,8 @@
                 <th ng-repeat="c in ctrl.columns">{{ c.text }}</th>
             </tr>
         </thead>
-        <tbody id="tbd" ng-model="ctrl.tbd" class="scrollTbody">
-            <tr ng-repeat="r in ctrl.records" id="first">
+        <tbody name="tab" ng-modle="ctrl.panel.tab" class="scrollTbody">
+            <tr ng-repeat="r in ctrl.records">
                 <td ng-repeat="i in ctrl.serial">
                     {{ r[i] }}
                 </td>

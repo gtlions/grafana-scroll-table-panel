@@ -1,3 +1,28 @@
+<script type="text/javascript">
+    function uuid() {
+        var s = [];
+        var hexDigits = "0123456789abcdef";
+        for (var i = 0; i < 36; i++) {
+            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        }
+        s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[8] = s[13] = s[18] = s[23] = "-";
+
+        var uuid = s.join("");
+        return uuid;
+    }
+    // document.getElementById('tabID').value = 'ssssssssssssssssssss';
+    // console.log("gtlions");
+    // console.log(document.getElementById('tabID').value);
+    // window.onload = function () {
+    //     document.getElementById('tabID').value = 'asdfasdf';
+    //     console.log("gtlions");
+    // }
+</script>
+
+
+
 <div class="editor-row">
     <div class="section gf-form-group">
         <h5 class="section-heading">选项</h5>
@@ -7,13 +32,5 @@
                 <select class="input-small gf-form-input" ng-model="ctrl.panel.scrollrefresh" ng-options="t for t in ctrl.intervals" ng-change="ctrl.render()"></select>
             </div>
         </div>
-
-        <!-- <div class="gf-form">
-            <label class="gf-form-label width-9">滚动方向</label>
-            <div class="gf-form-select-wrapper max-width-12">
-                <select class="input-small gf-form-input" ng-model="ctrl.panel.scrolldirection" ng-options="a.id as a.name for a in ctrl.direction" ng-change="ctrl.render()">
-                </select>
-            </div>
-        </div> -->
     </div>
 </div>
