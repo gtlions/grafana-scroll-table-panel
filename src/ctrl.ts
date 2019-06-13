@@ -53,7 +53,6 @@ export class ScrollTableCtrl extends MetricsPanelCtrl {
 
         }
 
-
         let changeTabRows = function (table) {
             let row = table.insertRow(table.rows.length);
             for (let j = 0; j < table.rows[0].cells.length; j++) {
