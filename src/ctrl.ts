@@ -8,20 +8,29 @@ export class ScrollTableCtrl extends MetricsPanelCtrl {
     serial: any[];
     intervals: any[];
     tabID: any;
+    panelID: any;
+    idInterval: any;
+    table: any;
     /** @ngInject */
     constructor($scope, $injector) {
         super($scope, $injector);
         this.intervals = [1000, 2000, 3000, 5000, 10000];
+        this.panelID = this.$scope.$id;
         this.events.on('render', this.onRender.bind(this));
         this.events.on('data-received', this.onDataReceived.bind(this));
         this.events.on('data-error', this.onDataError.bind(this));
         this.events.on('data-snapshot-load', this.onDataReceived.bind(this));
         this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
+        this.table = document.getElementById("tabAutoSrolle");
     }
+
     onRender() {
-        this.onRefreshInterval();
+        this.panelAutoSrolle();
     }
+
     onDataReceived(dataList) {
+        let tabElement = document.getElementById("tabAutoSrolle");
+        this.delTabRows(tabElement);
         this.columns = dataList[0].columns;
         this.records = dataList[0].rows;
         let numbers = new Array();
@@ -31,42 +40,62 @@ export class ScrollTableCtrl extends MetricsPanelCtrl {
         this.serial = numbers;
         this.render();
     }
+
     onDataError() {
         this.render();
     }
-    onRefreshInterval() {
-        let timeOut = this.getDashBoardrefreshInterval();
 
-        // let refreshInterval = this.$scope.ctrl.panel.scrollrefresh;
-        // if (refreshInterval == '' || refreshInterval == undefined || refreshInterval == null) {
-        //     refreshInterval = 2000;
-        // }
-        // this.tabID = this.$scope.ctrl.panel.tabID;
-        // let tid = this.$scope.$id;
-
-        let tabElements = document.getElementsByName("tab");
-        for (let tabElement of tabElements) {
-            let id = setInterval(function () { changeTabRows(tabElement); }, 2500);
-            setTimeout(function () {
-                clearInterval(id);
-            }, timeOut);
-
+    panelAutoSrolle() {
+        let dashBoardRefreshInterval = this.getDashBoardRefreshInterval();
+        let panelRefreshInterval = this.$scope.ctrl.panel.scrollrefresh;
+        if (panelRefreshInterval == '' || panelRefreshInterval == undefined || panelRefreshInterval == null) {
+            panelRefreshInterval = 2000;
         }
 
+        let tabElement = document.getElementById("tabAutoSrolle");
+        clearInterval(this.idInterval);
+        this.idInterval = setInterval(function () { changeTabRows(tabElement); }, panelRefreshInterval);
+        setTimeout(function () {
+            clearInterval(this.idInterval);
+            // clearTabRows(tabElement);
+        }, dashBoardRefreshInterval - 500);
+
         let changeTabRows = function (table) {
+            var myDate = new Date();
+            console.log('into changeTabRows ' + myDate.getMinutes() + ':' + myDate.getSeconds() + '.' + myDate.getMilliseconds());
+            // console.log(table.rows.length);
             let row = table.insertRow(table.rows.length);
             for (let j = 0; j < table.rows[0].cells.length; j++) {
                 let cell = row.insertCell(j);
                 cell.innerHTML = table.rows[0].cells[j].innerHTML;
             }
             table.deleteRow(0);
-        };
+        }
 
+        let clearTabRows = function (table) {
+            var rowNum = table.rows.length;
+            for (let i = 0; i < rowNum; i++) {
+                table.deleteRow(i);
+                rowNum = rowNum - 1;
+                i = i - 1;
+            }
+        }
     }
+
     onInitEditMode() {
-        // this.addEditorTab('Options', 'public/plugins/grafana-scroll-table-panel/partials/options.html', 2);
+        this.addEditorTab('Options', 'public/plugins/grafana-scroll-table-panel/partials/options.html', 2);
     }
-    getDashBoardrefreshInterval() {
+
+    delTabRows(table) {
+        var rowNum = table.rows.length;
+        for (let i = 0; i < rowNum; i++) {
+            table.deleteRow(i);
+            rowNum = rowNum - 1;
+            i = i - 1;
+        }
+    }
+
+    getDashBoardRefreshInterval() {
         let refresh = 99999999999;
         let str = this.$scope.$parent.dashboard.refresh;
         if (str == '' || str == undefined || str == null) {
@@ -86,13 +115,6 @@ export class ScrollTableCtrl extends MetricsPanelCtrl {
             }
         }
         return refresh;
-
-    }
-    guid() {
-        function S4() {
-            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-        return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
     }
 }
 

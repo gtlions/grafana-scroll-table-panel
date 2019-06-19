@@ -22,8 +22,8 @@
         "noImplicitThis": false,
         "noImplicitUseStrict": false,
         "noImplicitAny": false,
-        "noUnusedLocals": true,
-        "strictNullChecks": true,
+        "noUnusedLocals": false,
+        "strictNullChecks": false,
         "moduleResolution": "node",
     },
 }

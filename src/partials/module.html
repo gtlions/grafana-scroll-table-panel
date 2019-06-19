@@ -1,13 +1,13 @@
-<!-- <div class="clock-panel" ng-style="{height: ctrl.height}"> -->
 <!-- <h5> 表格内容逐行滚动 demo</h5> -->
 <div class="admin-list-table">
-    <table class="filter-table form-inline filter-table--hover" ng-model="ctrl.scrollrefresh2">
+    <table class="filter-table form-inline filter-table--hover">
         <thead>
             <tr>
+                <th ng-model="ctrl.panel.hiddenTH" hidden>{{ ctrl.panelID }}</th>
                 <th ng-repeat="c in ctrl.columns">{{ c.text }}</th>
             </tr>
         </thead>
-        <tbody name="tab" ng-modle="ctrl.panel.tab" class="scrollTbody">
+        <tbody id="tabAutoSrolle" name="tabAutoSrolle" ng-init="ctrl.panel.tabAutoSrolle" class="scrollTbody">
             <tr ng-repeat="r in ctrl.records">
                 <td ng-repeat="i in ctrl.serial">
                     {{ r[i] }}
