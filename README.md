@@ -1,4 +1,4 @@
-grafana监控平台的表格数据自动滚动插件
+# grafana监控平台的表格数据自动滚动插件
 
 # grafana-scroll-table-panel
 
